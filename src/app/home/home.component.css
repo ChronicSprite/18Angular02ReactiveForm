@@ -1,0 +1,39 @@
+.bigimg {
+    background-image: url("https://www.rd.com/wp-content/uploads/2016/11/02-Ways-to-Make-the-Most-of-Your-Doctors-Appointment_First-appointment_93813283_cyano66.jpg");
+    width: 100%;
+    background-size: cover;
+    height: 600px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card {
+    width: 342px;
+    margin-right: 250px;
+    margin-top: 20px;
+    height: 33rem;
+    border: 0px;
+    background-color: #87B5ED;
+}
+
+.card-header {
+    background-color: #5C7198;
+}
+
+.card-body {
+    padding: 12px 15px;
+    display: inline;
+}
+
+.form-control {
+    margin-bottom: 15px;
+}
+
+.btnlogin {
+    background-color: #44D1DB;
+    border: 0px;
+    color: #333333;
+    width: 100%; 
+    margin-bottom: 10px;
+    font-size: 14px;
+}

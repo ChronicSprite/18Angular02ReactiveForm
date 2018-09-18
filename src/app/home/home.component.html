@@ -1,0 +1,23 @@
+<div class="bigimg">
+  <div class="card">
+    <div class="card-header">
+      <span style="display: block; text-align: center; color: white; font-weight: 700; font-size: 20px">ĐĂNG NHẬP</span>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title" style="font-size: 14px">Tài khoản</h5>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+      [(ngModel)]="email" name="email" #emailIp="ngModel"
+      >
+      <div *ngIf="emailIp.errors && emailIp.errors.pattern">Email không hợp lệ</div>
+      <h5 class="card-title" style="font-size: 14px">Mật khẩu</h5>
+      <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <button class="btn btn-primary btnlogin" >Đăng nhập</button>
+      <div class="text-right"><a href="#" style="font-size: 14px; font-style: italic; color: white; text-decoration: underline;">Lấy lại mật khẩu</a></div>
+      <div><span style="font-size: 14px;">Bạn chưa có tài khoản?</span></div>
+      <button routerLink="/signup" class="btn btn-primary btnlogin" style="margin-top: 10px;">Đăng ký</button>
+    </div>
+  </div>
+</div>
+<p>
+  Home works!
+</p>

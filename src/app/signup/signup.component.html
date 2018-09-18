@@ -1,0 +1,162 @@
+<div class="container">
+  <h3 style="text-align: center; margin: 30px;">ĐĂNG KÝ</h3>
+  <div class="row">
+    <div class="col-sm-3 col-lg-5">
+      <span>Trường bắt buộc</span>
+    </div>
+    <div class="col-md-7 col-sm-12">
+      <div class="row" id="radio">
+        <div class="form-check" style="margin-right: 100px;">
+          <input class="form-check-input" type="radio" name="radiotop" id="radiotop1" value="personal" [(ngModel)]="role">
+          <label class="form-check-label" for="radiotop1">
+            Cá nhân
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radiotop" id="radiotop2" value="enterprise" [(ngModel)]="role">
+          <label class="form-check-label" for="radiotop2">
+            Công ty/ Tổ chức
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="role == 'personal'">
+    <div id="form">
+      <form #loginForm="ngForm">
+        <div class="row mt-3">
+          <div class="col-md-3">Họ và tên:</div>
+          <div class="col-md-4">
+            <input [(ngModel)]="signup.userName" required name="userName" minlength="6" class="form-control" #username="ngModel">
+            <div *ngIf="(username.dirty || username.touched) && username?.errors?.required">Thông tin bắt buộc</div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">Số điện thoại:</div>
+          <div class="col-md-4">
+            <input [(ngModel)]="signup.phone" required minlength="6" name="phone" type="phone" class="form-control" #phone="ngModel">
+            <!-- #password được gọi là Template Variable -->
+            <div *ngIf="(phone.dirty || phone.touched) && phone?.errors?.required">Thông tin bắt buộc</div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">Ngày sinh:</div>
+          <div class="col-md-4">
+            <input [(ngModel)]="signup.dayofbirth" required minlength="6" name="dayofbirth" type="dayofbirth" class="form-control" #dayofbirth="ngModel"
+              pattern="[a-zA-Z0-9]+@[a-z]+.[a-z]">
+            <div *ngIf="(dayofbirth.dirty || dayofbirth.touched) && dayofbirth?.errors?.required">Thông tin bắt buộc</div>
+            <div *ngIf="(dayofbirth.dirty || dayofbirth.touched) && dayofbirth?.errors?.pattern">Không hợp lệ</div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">Địa chỉ:</div>
+          <div class="col-md-4">
+            <input [(ngModel)]="signup.address" name="address" type="address" class="form-control" #address="ngModel">
+          </div>
+          <div class="form-check col-md-2" style="margin-left: 20px;">
+            <input class="form-check-input" type="radio" name="radiocity" id="radiocity1" value="option1" checked>
+            <label class="form-check-label" for="radiocity1">
+              TP.HCM
+            </label>
+          </div>
+          <div class="dropdown col-md-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" style="font-size: 14px; width: 150px;">
+              Quận/ huyện
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item">Bình Chánh</a>
+              <a class="dropdown-item">Bình Tân</a>
+              <a class="dropdown-item">Bình Thạnh</a>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3"></div>
+          <div class="col-md-4"></div>
+          <div class="form-check col-md-2" style="margin-left: 20px;">
+            <input class="form-check-input" type="radio" name="radiocity" id="radiocity2" value="option2">
+            <label class="form-check-label" for="radiocity2">
+              Tỉnh thành khác
+            </label>
+          </div>
+          <div class="dropdown col-md-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" style="font-size: 14px; width: 150px;">
+              Tỉnh/ thành
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item">Đà Nẵng</a>
+              <a class="dropdown-item">Quảng Nam</a>
+              <a class="dropdown-item">Quảng Ngãi</a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <span>Giới tính:</span>
+          </div>
+          <div class="col-md-7" style="padding-left: 65px;">
+            <div class="row">
+              <div class="form-check" style="margin-right: 40px;">
+                <input class="form-check-input" type="radio" name="radiogender" id="radiogender1" value="option1" checked>
+                <label class="form-check-label" for="radiogender1">
+                  Nam
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="radiogender" id="radiogender2" value="option2">
+                <label class="form-check-label" for="radiogender2">
+                  Nữ
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">Email:</div>
+          <div class="col-md-4">
+            <input [(ngModel)]="signup.email" required minlength="6" name="email" type="email" class="form-control" #email="ngModel">
+            <div *ngIf="(email.dirty || email.touched) && email?.errors?.required">Thông tin bắt buộc</div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">Mật khẩu:</div>
+          <div class="col-md-4">
+            <input [(ngModel)]="signup.password" required minlength="6" name="password" type="password" class="form-control" #password="ngModel">
+            <div *ngIf="(password.dirty || password.touched) && password?.errors?.required">Thông tin bắt buộc</div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">Nhập lại mật khẩu:</div>
+          <div class="col-md-4">
+            <input [(ngModel)]="signup.passwordagain" required minlength="6" name="passwordagain" type="password" class="form-control"
+              #passwordagain="ngModel">
+            <div *ngIf="(passwordagain.dirty || passwordagain.touched) && passwordagain?.errors?.required">Thông tin bắt
+              buộc</div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">Mã xác nhận:</div>
+          <div class="col-md-4">reCaptcha</div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3"></div>
+          <div class="col-md-2 col-sm-4">
+            <button id="xacthuc" type="button" class="btn btn-primary" style="width: 120px; font-size: 14px; background-color: #15C5D2; border: none; color: black">Tạo
+              tài khoản</button>
+          </div>
+          <div class="col-md-2 col-sm-4">
+            <button id="xacthuc" type="button" class="btn btn-primary" style="width: 120px; font-size: 14px; background-color: #BDC1C2; border: none; color: black">Quay
+              lại</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="role == 'enterprise'">
+    Enterprise Content
+  </div>
+</div>

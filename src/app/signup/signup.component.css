@@ -1,0 +1,37 @@
+.form-check-input {
+    margin-top: 0.4rem;
+}
+
+.form-check-label {
+    padding-left: 0px;
+}
+
+div{
+    font-family: roboto;
+    font-size: 14px;
+}
+
+.form-check, .col-md-3 {
+    padding-top: 7px;
+}
+
+form {
+    margin-bottom: 250px;
+}
+
+
+@media screen and (max-width: 780px) {
+    #xacthuc {
+        width: 100px !important;
+    }
+    #radio {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #form {
+      margin-left: 16.67%;
+    }
+  }

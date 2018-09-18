@@ -1,0 +1,166 @@
+<div class="container">
+  <h3 style="text-align: center; margin: 30px;">ĐĂNG KÝ</h3>
+  <div class="row">
+    <div class="col-sm-3 col-lg-5">
+      <span>Trường bắt buộc</span>
+    </div>
+    <div class="col-md-7 col-sm-12">
+      <div class="row" id="radio">
+        <div class="form-check" style="margin-right: 100px;">
+          <input class="form-check-input" type="radio" name="radiotop" id="radiotop1" value="personal" [(ngModel)]="role">
+          <label class="form-check-label" for="radiotop1">
+            Cá nhân
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radiotop" id="radiotop2" value="enterprise" [(ngModel)]="role">
+          <label class="form-check-label" for="radiotop2">
+            Công ty/ Tổ chức
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="role == 'personal'">
+    <div id="form">
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()" [formGroup]="rfContact">
+        <div class="row mt-3">
+          <div class="col-md-3">Họ và tên:</div>
+          <div class="col-md-4">
+            <input name="contactName" class="form-control" formControlName="contactName">
+          </div>
+          <div *ngIf="rfContact.controls.contactName?.errors?.required && rfContact.controls.contactName?.touched && isSubmit">
+            Trường bắt buộc
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">Số điện thoại:</div>
+          <div class="col-md-4">
+            <input name="phone" type="phone" class="form-control" formControlName="phoneNumber">
+            <!-- #password được gọi là Template Variable -->
+
+          </div>
+          <div *ngIf="rfContact.controls.phoneNumber?.errors?.required && rfContact.controls.phoneNumber?.touched">
+            Trường bắt buộc
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">Ngày sinh:</div>
+          <div class="col-md-4">
+            <input name="dayofbirth" type="dayofbirth" class="form-control" formControlName="birthDay">
+
+          </div>
+          <div *ngIf="rfContact.controls.birthDay?.errors?.required && rfContact.controls.birthDay?.touched">
+            Trường bắt buộc
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">Địa chỉ:</div>
+          <div class="col-md-9">
+            <!-- Dùng cha là formGroupName, con là formControlName để gọi object trong object-->
+            <div>
+              <div formArrayName="address">
+                <div *ngFor="let control of rfContact.get('address').controls; let i = index">
+                  <div class="mt-3 row" [formGroupName]="i">
+                    <div class="col-md-3">Địa chỉ {{i + 1}}</div>
+                    <div class="col-md-4">
+                      <input formControlName="street" class="form-control">
+                      <div *ngIf="control.controls.street.errors?.required && control.controls.street.touched">
+                        Bắt buộc
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <input formControlName="province" class="form-control">
+                    </div>
+                    <div class="col-md-1" *ngIf="rfContact.get('address').length > 1">
+                      <button class="btn btn-primary" (click)="removeAddressForm(i)">Xóa</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <button class="btn btn-primary" (click)="addAddressForm()">Thêm địa chỉ</button>
+              <br>
+
+            </div>
+          </div>
+          
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-3">
+            <span>Giới tính:</span>
+          </div>
+          <div class="col-md-7" style="padding-left: 65px;">
+            <div class="row">
+              <div class="form-check" style="margin-right: 40px;">
+                <input class="form-check-input" type="radio" name="radiogender" id="radiogender1" value="option1"
+                  checked>
+                <label class="form-check-label" for="radiogender1">
+                  Nam
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="radiogender" id="radiogender2" value="option2">
+                <label class="form-check-label" for="radiogender2">
+                  Nữ
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">Email:</div>
+          <div class="col-md-4">
+            <input name="email" type="email" class="form-control">
+
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">Mật khẩu:</div>
+          <div class="col-md-4">
+            <input name="password" type="password" class="form-control">
+
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">Nhập lại mật khẩu:</div>
+          <div class="col-md-4">
+            <input name="passwordagain" type="password" class="form-control">
+
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">Mã xác nhận:</div>
+          <div class="col-md-4">reCaptcha</div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3"></div>
+          <div class="col-md-2 col-sm-4">
+            <button id="taotaikhoan" type="button" class="btn btn-primary" style="width: 120px; font-size: 14px; background-color: #15C5D2; border: none; color: black">Tạo
+              tài khoản</button>
+          </div>
+          <div class="col-md-2 col-sm-4">
+            <button id="quaylai" type="button" class="btn btn-primary" style="width: 120px; font-size: 14px; background-color: #BDC1C2; border: none; color: black">Quay
+              lại
+            </button>
+          </div>
+        </div>
+        <div>
+          <button (click)="onSubmit()">Submit</button>
+        </div>
+        <div>{{rfContact.value | json}}</div>
+        <div>{{rfContact.controls.contactName?.errors | json}}</div>
+        <div>{{rfContact.controls.phoneNumber?.errors | json}}</div>
+        
+      </form>
+    </div>
+  </div>
+  <div *ngIf="role == 'enterprise'">
+    <div>
+      Enterprise Content
+    </div>
+  </div>
+</div>
